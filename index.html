@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consociate Solutions Pvt. Ltd.,  User Card</title>
+<style>
+  /* CSS */
+  .card {
+    width: 300px;
+    border: 4px double #06060625;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 6px 8px 0 rgba(11, 35, 170, 0.2);
+    background-image: url("https://i.pinimg.com/originals/b7/fb/57/b7fb57e49bd65bf714a6de20c00bedf4.jpg");
+ 
+  }
+
+  .avatar {
+    width: 200px;
+    border-radius: 100%;
+    margin-left: 51px;
+
+  }
+
+  .info {
+    margin-top: 10px;
+  }
+.title{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <form id="usernameForm">
+      <input type="text" id="usernameInput" placeholder="Enter Your Username">
+      <br>
+      <br>
+      <button type="submit">Enter</button>
+    </form>
+    <div class="card" id="userCard" style="display: none;">
+     <p class="title"><strong>Consociate Solutions </strong> <span id="title"></span></p>
+      <img src="" alt="Avatar" class="avatar" >
+      <div class="info">
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>No. of Public Repos:</strong> <span id="publicRepos"></span></p>
+        <p><strong>No. of Public Gists:</strong> <span id="publicGists"></span></p>
+        <p><strong>Profile Created At:</strong> <span id="createdAt"></span></p>
+      </div>
+    </div>
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#usernameForm').submit(function(e){
+      e.preventDefault();
+      var username = $('#usernameInput').val();
+      if(username !== ''){
+        $.ajax({
+          url: 'https://api.github.com/users/' + username,
+          dataType: 'json',
+          success: function(data){
+            $('#userCard').show();
+            $('.avatar').attr('src', data.avatar_url);
+            $('#username').text(data.login);
+            $('#name').text(data.name || 'NA');
+            $('#publicRepos').text(data.public_repos);
+            $('#publicGists').text(data.public_gists);
+            $('#createdAt').text(new Date(data.created_at).toISOString().slice(0,10));
+          },
+          error: function(){
+            alert('User not found or API request failed.');
+            $('#userCard').hide();
+          }
+        });
+      } else {
+        alert('Please enter a GitHub username.');
+      }
+    });
+  });
+</script>
+</body>
+</html>
