@@ -1,91 +1,374 @@
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consociate Solutions Pvt. Ltd.,  User Card</title>
-<style>
-  /* CSS */
-  .card {
-    width: 300px;
-    border: 4px double #06060625;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px auto;
-    box-shadow: 0 6px 8px 0 rgba(11, 35, 170, 0.2);
-    background-image: url("https://i.pinimg.com/originals/b7/fb/57/b7fb57e49bd65bf714a6de20c00bedf4.jpg");
- 
-  }
-
-  .avatar {
-    width: 200px;
-    border-radius: 100%;
-    margin-left: 51px;
-
-  }
-
-  .info {
-    margin-top: 10px;
-  }
-.title{
-    font-size: 30px;
-    margin-left: 20px;
-}
-
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> NFTALIEN </title>
+    <link rel="icon" type="image" href="img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body>
-  <div class="container">
-    <form id="usernameForm">
-      <input type="text" id="usernameInput" placeholder="Enter Your Username">
-      <br>
-      <br>
-      <button type="submit">Enter</button>
-    </form>
-    <div class="card" id="userCard" style="display: none;">
-     <p class="title"><strong>Consociate Solutions </strong> <span id="title"></span></p>
-      <img src="" alt="Avatar" class="avatar" >
-      <div class="info">
-        <p><strong>Username:</strong> <span id="username"></span></p>
-        <p><strong>Name:</strong> <span id="name"></span></p>
-        <p><strong>No. of Public Repos:</strong> <span id="publicRepos"></span></p>
-        <p><strong>No. of Public Gists:</strong> <span id="publicGists"></span></p>
-        <p><strong>Profile Created At:</strong> <span id="createdAt"></span></p>
-      </div>
-    </div>
-  </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $('#usernameForm').submit(function(e){
-      e.preventDefault();
-      var username = $('#usernameInput').val();
-      if(username !== ''){
-        $.ajax({
-          url: 'https://api.github.com/users/' + username,
-          dataType: 'json',
-          success: function(data){
-            $('#userCard').show();
-            $('.avatar').attr('src', data.avatar_url);
-            $('#username').text(data.login);
-            $('#name').text(data.name || 'NA');
-            $('#publicRepos').text(data.public_repos);
-            $('#publicGists').text(data.public_gists);
-            $('#createdAt').text(new Date(data.created_at).toISOString().slice(0,10));
-          },
-          error: function(){
-            alert('User not found or API request failed.');
-            $('#userCard').hide();
-          }
-        });
-      } else {
-        alert('Please enter a GitHub username.');
-      }
-    });
-  });
-</script>
+<body>
+
+    <section class="container-fluid  g-0">
+
+        <section class="container-fluid"><!-- header start-->
+            <section class="row ">
+                <nav class="navbar navbar-expand-lg px-3">
+                    <div class="container-fluid my-4">
+                        <img src="img/logo.png" alt="img not found">
+                        <h2 class="text-light logo_name me-3 mt-2">NFTALIEN</h2>
+                        <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link nav_name text-light mx-2 dropdown-toggle " href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        HOME
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link nav_name text-light mx-2 dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        ABOUT
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link nav_name text-light mx-2 dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        ROADMAP
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link nav_name text-light mx-2" href="#">COLLECTION</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link nav_name text-light mx-2 dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        FAQS
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                            <form class="d-flex btnnav" role="btns">
+                                <img src="img/switch.png" alt="omg not found">
+
+                                <div class="dropdown btn1 mx-2 d-flex">
+                                    <button class="btn btn-lg border-0 text-center" type="button">
+                                        <img src="img/btnicon1.png" class="text-center nav_btn" alt="img not found">
+                                        DISCORD </button>
+                                </div>
+                                <div class="dropdown btn2 mx-2 d-flex">
+                                    <button class="btn btn-lg border-0 text-center" type="button">
+                                        <img src="img/btnicon2.png" class="text-center nav_btn" alt="img not found">
+                                        CONNECT </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+        </section><!-- header end-->
+
+        <section class="container-fluid hero"><!--hero start-->
+            <section class="container">
+                <section class="row p-0 text-center text-light">
+
+                    <h1 class="heading">EXPLORE NFT COLLECTION</h1>
+                    <p class="hero_para">A collection of 2525 highly-fashionable NFTs on the ETH Blockchain. Unique,
+                        <br> metaverse-ready, and designed to benefit their holders.
+                    </p>
+
+                    <div class="m-4 g-2 herobtn">
+                        <button type="button" class="btn hero_btn1 mx-2 text-center text-dark ">CONNECT WALLET</button>
+                        <button type="button" class="btn hero_btn2 mx-2 text-center text-light ">WHITELIST NOW</button>
+                    </div>
+
+                </section>
+            </section>
+        </section><!--hero end-->
+
+        <section class="container-fluid  my-5"><!--sec-1 start-->
+            <section class="container ">
+
+                <h1 class="sec1_heading my-5 text-center text-light">HOW TO <span class="ctext">NFTALIEN</span> WORK
+                </h1>
+
+                <div class="row  my-5">
+
+                    <div class="col-sm-12  mx-2 rounded-2 sec1_card col-md-2 card card bg-dark">
+                        <img src="img/copy.png" class="card-img-top img-fluid mt-4 mx-auto step_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="card_head text-center"> STEP 1</p>
+                            <p class="card-text text-light text-center step_p">Connect Your Wallet</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12  mx-2 rounded-2 sec1_card col-md-2 card card bg-dark">
+                        <img src="img/credit-card.png" class="card-img-top img-fluid mt-4 mx-auto step_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="card_head text-center"> STEP 2</p>
+                            <p class="card-text text-light text-center step_p">Select Your Item</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12  mx-2 rounded-2 sec1_card col-md-2 card card bg-dark">
+                        <img src="img/smart-cart.png" class="card-img-top img-fluid mt-4 mx-auto step_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="card_head text-center"> STEP 3</p>
+                            <p class="card-text text-light text-center step_p">Confirm the Transaction</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12  mx-2 rounded-2 sec1_card col-md-2 card card bg-dark">
+                        <img src="img/stock-market.png" class="card-img-top img-fluid mt-4 mx-auto step_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="card_head text-center"> STEP 4</p>
+                            <p class="card-text text-light text-center step_p">Receive Your NFTs</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section><!--sec-1 end-->
+
+        <section class="container-fluid  my-5"><!--sec-2 start-->
+            <section class="container ">
+
+                <h1 class="sec1_heading my-5 text-light">HOT <span class="ctext">COLLAECTION</span></h1>
+
+                <div class="row my-5 mt-3 ">
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_1.jpg" id="hotimgs1" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 1</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_2.png" id="hotimgs2" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 2</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_3.png" id="hotimgs3" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 3</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_4.png" id="hotimgs4" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 4</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-5 mt-3">
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_5.png" id="hotimgs5" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 5</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_6.png" id="hotimgs6" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 6</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_7.png" id="hotimgs7" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 7</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mx-2 mx-auto sec2_card col-md-2 card card bg-dark">
+                        <img src="img/hot_8.png" id="hotimgs8" class="card-img-top img-fluid mt-4 mx-auto hot_img"
+                            alt="img not found">
+                        <div class="card-body">
+                            <p class="text-light h6">SKELATON 8</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section><!--sec-2 end-->
+
+        <section class="container-fluid my-5"><!--sec-3 start-->
+            <section class="row  text-light">
+
+                <div class="col-12 px-5 col-lg-5 mx-5">
+                    <h1 class="fw-bold mb-2">THE STORY</h1>
+                    <P class="my-4">Our collection's priority is to reward NFT holders by developing utilities <br>
+                        they can use in their current everyday life. Not in a hypothetical future.</P>
+                    <div class="row my-4">
+                        <div class="col-4 mt-3">
+                            <p>Total Item</p>
+                            <h1 class="mt-3 fw-bolder">2240+</h1>
+                        </div>
+                        <div class="col-4 mt-3">
+                            <p>Profiles whitelisted</p>
+                            <h1 class="mt-3 fw-bolder">1000+</h1>
+                        </div>
+                    </div>
+                    <button type="button" class="btn hero_btn2 mt-5 text-center text-light ">READ MORE</button>
+
+
+                </div>
+
+                <div class="col-12 col-lg-5 mx-5">
+                    <div class="row">
+
+                        <div class="col-6 p-2">
+                            <div class="card bg-dark text-center">
+                                <div class="card-body">
+                                    <h1 class="card-title ctext"> 01 </h1>
+                                    <h3 class="card-text"> Daily Tokens </h3>
+                                    <p class="card-text text-secondary">Earn interstellar tokens passively by staking
+                                        your collectible
+                                        NFT.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 p-2">
+                            <div class="card bg-dark text-center">
+                                <div class="card-body">
+                                    <h1 class="card-title ctext"> 02 </h1>
+                                    <h3 class="card-text"> Exclusive Discounts </h3>
+                                    <p class="card-text text-secondary">Tokens and NFTs can be used for discounts at top
+                                        fashion
+                                        brands.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 p-2">
+                            <div class="card bg-dark text-center">
+                                <div class="card-body">
+                                    <h1 class="card-title ctext"> 03 </h1>
+                                    <h3 class="card-text"> Galactic Merch </h3>
+                                    <p class="card-text text-secondary">Members-only merch designed by David and other
+                                        world-renowned
+                                        artists.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 p-2">
+                            <div class="card bg-dark mx-auto text-center">
+                                <div class="card-body">
+                                    <h1 class="card-title ctext"> 04 </h1>
+                                    <h3 class="card-text"> Limited-Edition </h3>
+                                    <p class="card-text text-secondary">Get limited-edition items from Alienverse
+                                        collabs with fashion
+                                        and luxury brands.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section><!--sec-3 end-->
+
+        <section class="container-fluid "><!--footer start-->
+            <section class="row m-0">
+
+                <h1 class="sec1_heading my-5 text-center text-light"><span class="ctext"> BINABOX</span> PARTNER</h1>
+
+                <div class="row1 my-4 mx2">
+                    <img src="img/foot_1.png" alt="img not found">
+                    <img src="img/foot_2.png" alt="img not found">
+                    <img src="img/foot_3.png" alt="img not found">
+                    <img src="img/foot_4.png" alt="img not found">
+                    <img src="img/foot_5.png" alt="img not found">
+                    <img src="img/foot_6.png" alt="img not found">
+                </div>
+
+                <div class="row2 my-4 mx2">
+                    <img src="img/row2_1.png" alt="img not found">
+                    <img src="img/row2_2.png" alt="img not found">
+                    <img src="img/row2_3.png" alt="img not found">
+                    <img src="img/row2_4.png" alt="img not found">
+                    <img src="img/row2_5.png" alt="img not found">
+                    <img src="img/row2_6.png" alt="img not found">
+                </div>
+
+                <div class="row3 my-4 mx2">
+                    <img src="img/row3_1.png" alt="img not found">
+                    <img src="img/row3_2.png" alt="img not found">
+                    <img src="img/row3_3.png" alt="img not found">
+                    <img src="img/row3_4.png" alt="img not found">
+                    <img src="img/row3_5.png" alt="img not found">
+                    <img src="img/row3_6.png" alt="img not found">
+                </div>
+
+
+            </section>
+        </section><!--footer end-->
+
+
+    </section>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
 </body>
+
 </html>

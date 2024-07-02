@@ -1,0 +1,114 @@
+body {
+    background: #040b11;
+    font-family: Bakbak One;
+}
+
+.nav_name {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.logo_name {
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 42px;
+    text-align: left;
+}
+
+.nav_btn {
+    height: 27px;
+    width: 27px;
+    color: #ffffff;
+
+}
+
+.btn1 {
+    background: #4e5250;
+}
+
+.btn2 {
+    background: #21e786;
+}
+
+.hero {
+    background-image: url(../img/hero1.png);
+    height: 630px;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.heading {
+    margin-top: 380px;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 80px;
+    color: #00ff84;
+}
+
+.herobtn {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.hero_btn1 {
+    background-color: #21e786;
+    box-shadow: 0px 0px 15px #ffffff;
+}
+
+.hero_btn2 {
+    border: 2px solid #21e786;
+    box-shadow: 0px 0px 15px #21e786;
+}
+.navbar-toggler{
+    background-color: #21e786;
+}
+.sec1_card{
+    width: 260px;
+}
+.sec1_card:hover {
+    box-shadow: 0px 0px 20px #21e786;
+}
+
+.sec1_heading {
+    font-size: 37px;
+    font-weight: 600;
+    line-height: 56px;
+}
+
+.ctext {
+    color: #21e786;
+}
+
+.card_head {
+    color: #21e786;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.step_img {
+    height: 90px;
+    width: 90px;
+}
+
+.step_p {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sec2_card{
+    width: 269px;
+}
+.hot_img{
+     height: 280px;
+}
+
+/* 
+@media only screen and (min-width:320px) {
+    .sec1_heading {
+        margin-top: 900px;
+    }
+} */
